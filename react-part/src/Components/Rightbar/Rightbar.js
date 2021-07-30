@@ -2,7 +2,7 @@ import './Rightbar.css'
 import { Users } from '../../dummyData';
 import Online from '../Online/Online';
 
-function Rightbar({ profile }) {
+function Rightbar({ user }) {
 
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     const HomeRightbar = () => {
@@ -34,17 +34,17 @@ function Rightbar({ profile }) {
                 <div className="rightbarInfo">
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">City:</span>
-                        <span className="rightbarInfoValue">Aligarh</span>
+                        <span className="rightbarInfoValue">{user.city}</span>
                     </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">From:</span>
-                        <span className="rightbarInfoValue">Uttar Pradesh</span>
+                        <span className="rightbarInfoValue">{user.from}</span>
                     </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">Relationship:</span>
                         <span className="rightbarInfoValue">
-                            Single
-            </span>
+                            {user.relationship === 1 ? "Single" : user.relationship === 2 ? "Married" : "-"}
+                        </span>
                     </div>
                 </div>
                 <h4 className="rightbarTitle">User friends</h4>
@@ -66,7 +66,7 @@ function Rightbar({ profile }) {
         <div className="rightbar">
             <div className="rightbarWrapper">
 
-                {(profile) ? <ProfileRightBar /> : <HomeRightbar />}
+                {(user) ? <ProfileRightBar /> : <HomeRightbar />}
             </div>
         </div>
     )

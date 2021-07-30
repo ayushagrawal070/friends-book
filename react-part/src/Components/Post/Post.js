@@ -1,12 +1,23 @@
 import './Post.css';
 import { MoreVert } from "@material-ui/icons";
-import { Users } from '../../dummyData';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { format } from 'timeago.js'
+import { Link } from 'react-router-dom';
 
 function Post({ post }) {
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
-    const [like, setlike] = useState(post.like);
+    const [like, setlike] = useState(post.likes.length);
     const [isLiked, setisLiked] = useState(false);
+    const [user, setuser] = useState({});
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const res = await axios.get(`/users?userId=${post.userId}`);
+            setuser(res.data);
+        }
+        fetchUser();
+    }, [post.userId]);
 
     const likeHandler = () => {
         setlike(isLiked ? like - 1 : like + 1);
@@ -18,17 +29,18 @@ function Post({ post }) {
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <img
-                            className="postProfileImg"
-                            src={pf + Users.filter(u => (u.id === post.userId))[0].profilePicture}
-                            alt="" />
+                        <Link to={`profile/${user.username}`}>
+                            <img
+                                className="postProfileImg"
+                                src={user.profilePicture || pf + "person/noAvatar.png"}
+                                alt="" />
+
+                        </Link>
                         <span className="postUsername">
-                            {Users.filter(u => (
-                                u.id === post.userId
-                            ))[0].username}
+                            {user.username}
                         </span>
                         <span className="postDate">
-                            {post.date}
+                            {format(post.createdAt)}
                         </span>
                     </div>
                     <div className="postTopRight">
@@ -39,7 +51,7 @@ function Post({ post }) {
                     <span className="postText">
                         {post?.desc}
                     </span>
-                    <img className="postImg" src={pf + post.photo} alt="" />
+                    <img className="postImg" src={pf + post.img} alt="" />
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
@@ -62,7 +74,7 @@ function Post({ post }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
