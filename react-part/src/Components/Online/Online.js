@@ -1,7 +1,7 @@
 import './Online.css'
 
 function Online({ user }) {
-    const pf = "/assets/"
+    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
         <li className="rightbarFriend">
             <div className="rightbarProfileImgContainer">

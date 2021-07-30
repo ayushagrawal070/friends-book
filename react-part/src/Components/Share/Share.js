@@ -7,11 +7,12 @@ import {
 } from "@material-ui/icons";
 
 function Share() {
+    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
         <div className="share">
             <div className="shareWrapper">
                 <div className="sharetTop">
-                    <img className="shareProfileImg" src="/assets/person/1.jpeg" alt=""></img>
+                    <img className="shareProfileImg" src={pf + "person/1.jpeg"} alt=""></img>
                     <input placeholder="What's in your mind today?" className="shareInput" />
                 </div>
                 <hr className="shareHr" />

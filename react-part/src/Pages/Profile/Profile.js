@@ -5,6 +5,8 @@ import Sidebar from '../../Components/Sidebar/Sidebar'
 import './Profile.css'
 
 function Profile() {
+
+    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
         <>
             <Header />
@@ -15,12 +17,12 @@ function Profile() {
                         <div className="profileCover">
                             <img
                                 className="profileCoverImg"
-                                src="assets/post/3.jpeg"
+                                src={pf + "post/3.jpeg"}
                                 alt=""
                             />
                             <img
                                 className="profileUserImg"
-                                src="assets/person/6.jpeg"
+                                src={pf + "person/6.jpeg"}
                                 alt=""
                             />
                         </div>

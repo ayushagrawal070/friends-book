@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
     res.send("homepage");
 })
 
-app.listen(3000, () => {
+app.listen(8000, () => {
     console.log("listening on port 3000");
 })
 

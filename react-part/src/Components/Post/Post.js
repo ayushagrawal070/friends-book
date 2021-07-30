@@ -4,7 +4,7 @@ import { Users } from '../../dummyData';
 import { useState } from 'react';
 
 function Post({ post }) {
-    const pf = "/assets/";
+    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     const [like, setlike] = useState(post.like);
     const [isLiked, setisLiked] = useState(false);
 
@@ -45,13 +45,13 @@ function Post({ post }) {
                     <div className="postBottomLeft">
                         <img
                             className="likeIcon"
-                            src="assets/like.png"
+                            src={pf + "like.png"}
                             alt=""
                             onClick={likeHandler}
                         />
                         <img
                             className="likeIcon"
-                            src="assets/heart.png"
+                            src={pf + "heart.png"}
                             alt=""
                             onClick={likeHandler}
                         />

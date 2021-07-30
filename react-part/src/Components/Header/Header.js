@@ -1,10 +1,17 @@
 import './Header.css';
 import { Search, Person, Chat, Notifications } from '@material-ui/icons'
+import { Link } from 'react-router-dom'
+
+
 function Header() {
+
+    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
         <div className="header">
             <div className="headerleft">
-                <span className="logo">FriendsBook</span>
+                <Link to="/" style={{ textDecoration: "none" }}>
+                    <span className="logo">FriendsBook</span>
+                </Link>
             </div>
             <div className="headercenter">
                 <div className="searchbar">
@@ -39,7 +46,7 @@ function Header() {
                         </span>
                     </div>
                 </div>
-                <img src="/assets/person/1.jpeg" alt="" className="headerImg" />
+                <img src={pf + "person/1.jpeg"} alt="" className="headerImg" />
             </div>
         </div>
     )

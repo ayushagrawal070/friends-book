@@ -4,16 +4,17 @@ import Online from '../Online/Online';
 
 function Rightbar({ profile }) {
 
+    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     const HomeRightbar = () => {
         return (
             <>
                 <div className="birthdayContainer">
-                    <img className="birthdayImg" src="assets/gift.png" alt="" />
+                    <img className="birthdayImg" src={pf + "gift.png"} alt="" />
                     <span className="birthdayText">
                         <b>Shekhar Gautam</b> and <b>3 other friends</b> have birthday today
                     </span>
                 </div>
-                <img className="rightbarAd" src="/assets/ad.png" alt="" />
+                <img className="rightbarAd" src={pf + "ad.png"} alt="" />
                 <h4 className="rightbarTitle">
                     Online Friends
                 </h4>
@@ -50,7 +51,7 @@ function Rightbar({ profile }) {
                 <div className="rightbarFollowings">
                     <div className="rightbarFollowing">
                         <img
-                            src="/assets/person/1.jpeg"
+                            src={pf + "person/1.jpeg"}
                             alt=""
                             className="rightbarFollowingImg"
                         />
