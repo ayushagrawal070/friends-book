@@ -11,7 +11,7 @@ function Home() {
             <Header />
             <div className="homeContainer">
                 <Sidebar />
-                <Feed username="Shekhar Gautam" />
+                <Feed />
                 <Rightbar />
             </div>
 

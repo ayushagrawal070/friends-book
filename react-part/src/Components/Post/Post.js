@@ -1,15 +1,21 @@
 import './Post.css';
 import { MoreVert } from "@material-ui/icons";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { format } from 'timeago.js'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 function Post({ post }) {
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     const [like, setlike] = useState(post.likes.length);
     const [isLiked, setisLiked] = useState(false);
     const [user, setuser] = useState({});
+    const { user: currUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        setisLiked(post.likes.includes(currUser._id));
+    }, [currUser._id, post.likes])
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -18,8 +24,13 @@ function Post({ post }) {
         }
         fetchUser();
     }, [post.userId]);
-
     const likeHandler = () => {
+        try {
+            axios.put("/posts/" + post._id + "/like", { userId: currUser._id });
+        }
+        catch (error) {
+
+        }
         setlike(isLiked ? like - 1 : like + 1);
         setisLiked(!isLiked);
     }
@@ -32,7 +43,7 @@ function Post({ post }) {
                         <Link to={`profile/${user.username}`}>
                             <img
                                 className="postProfileImg"
-                                src={user.profilePicture || pf + "person/noAvatar.png"}
+                                src={user.profilePicture ? pf + user.profilePicture : pf + "person/noAvatar.png"}
                                 alt="" />
 
                         </Link>

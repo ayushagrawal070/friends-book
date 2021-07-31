@@ -1,11 +1,13 @@
 import './Header.css';
 import { Search, Person, Chat, Notifications } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
-
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext'
 
 function Header() {
-
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
+    const { user } = useContext(AuthContext);
+
     return (
         <div className="header">
             <div className="headerleft">
@@ -46,7 +48,9 @@ function Header() {
                         </span>
                     </div>
                 </div>
-                <img src={pf + "person/1.jpeg"} alt="" className="headerImg" />
+                <Link to={`profile/${user.username}`}>
+                    <img src={user.profilePicture ? pf + user.profilePicture : pf + "person/noAvatar.png"} alt="" className="headerImg" />
+                </Link>
             </div>
         </div>
     )
