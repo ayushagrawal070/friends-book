@@ -21,13 +21,28 @@ function Share() {
             userId: user._id,
             desc: desc.current.value,
         }
+        if (file) {
+            const data = new FormData();
+            const fileName = Date.now() + file.name;
+            data.append("file", file);
+            data.append("name", fileName);
+            newPost.img = "hello.jpeg";
+            console.log(newPost);
+            try {
+                await axios.post("/upload", data);
+            }
+            catch (err) {
+                console.log("!!!!!!!!!!!! error yahan aaya ah !!!!!!!11")
+                console.log(err);
+            }
+        }
         try {
             await axios.post("/posts", newPost);
         }
         catch (err) {
-
+            console.log(err);
         }
-    }
+    };
 
     return (
         <div className="share">
@@ -49,7 +64,7 @@ function Share() {
                     />
                 </div>
                 <hr className="shareHr" />
-                <form className="shareBottom" onSubmit={submitHandler}>
+                <form className="shareBottom" onSubmit={submitHandler} >
                     <div className="shareOptions">
                         <label htmlFor="file" className="shareOption">
                             <PermMedia htmlColor="tomato" className="shareIcon" />
@@ -59,7 +74,8 @@ function Share() {
                             <input
                                 style={{ display: "none" }}
                                 type="file"
-                                id="file" accept=".png, .jpeg,.jpg"
+                                id="file"
+                                accept=".png,.jpeg,.jpg"
                                 onChange={(e) => setfile(e.target.files[0])}
                             />
                         </label>
