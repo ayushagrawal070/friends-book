@@ -22,17 +22,16 @@ function Share() {
             desc: desc.current.value,
         }
         if (file) {
-            const data = new FormData();
-            const fileName = Date.now() + file.name;
+            const
+                data = new FormData();
+            const fileName = file.name;
             data.append("file", file);
             data.append("name", fileName);
-            newPost.img = "hello.jpeg";
-            console.log(newPost);
+            newPost.img = data.get("name");
             try {
                 await axios.post("/upload", data);
             }
             catch (err) {
-                console.log("!!!!!!!!!!!! error yahan aaya ah !!!!!!!11")
                 console.log(err);
             }
         }
@@ -64,7 +63,7 @@ function Share() {
                     />
                 </div>
                 <hr className="shareHr" />
-                <form className="shareBottom" onSubmit={submitHandler} >
+                <form className="shareBottom" enctype="multipart/form-data" onSubmit={submitHandler} >
                     <div className="shareOptions">
                         <label htmlFor="file" className="shareOption">
                             <PermMedia htmlColor="tomato" className="shareIcon" />
