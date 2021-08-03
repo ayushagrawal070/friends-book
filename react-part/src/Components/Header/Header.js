@@ -48,7 +48,7 @@ function Header() {
                         </span>
                     </div>
                 </div>
-                <Link to={`profile/${user.username}`}>
+                <Link to={`/profile/${user.username}`}>
                     <img src={user.profilePicture ? pf + user.profilePicture : pf + "person/noAvatar.png"} alt="" className="headerImg" />
                 </Link>
             </div>
