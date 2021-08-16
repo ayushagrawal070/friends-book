@@ -15,7 +15,7 @@ import CloseFriend from '../CloseFriend/CloseFriend';
 
 function Sidebar() {
 
-    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
+    // const pf = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
