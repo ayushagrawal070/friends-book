@@ -77,7 +77,7 @@ function Register() {
                         <button className="registerButton" type="submit">
                             Sign Up
               </button>
-                        <button className="registerRegisterButton">Log into Account</button>
+                        <button className="registerRegisterButton" >Log into Account</button>
                     </form>
                 </div>
             </div>
